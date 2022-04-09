@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="@dimen/default_margin"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
@@ -25,31 +25,21 @@
 
                 <ImageView
                     android:id="@+id/imgDog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="194dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
+                    style="@style/ImageContent"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
                 <TextView
                     android:id="@+id/tvGameTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextContent.Title"
                     android:layout_below="@+id/imgDog"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:text="GTA 5"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvGameRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextContent.Subtitle"
                     android:layout_below="@id/tvGameTitle"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="8dp"
                     android:text="4.5"
                     android:textAppearance="?attr/textAppearanceBody2" />
 
