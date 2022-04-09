@@ -24,7 +24,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imgDog"
+                    android:id="@+id/imgGame"
                     style="@style/ImageContent"
                     tools:src="@tools:sample/backgrounds/scenic"
                     android:contentDescription="@string/latest_game_image" />
@@ -32,7 +32,7 @@
                 <TextView
                     android:id="@+id/tvGameTitle"
                     style="@style/TextContent.Title"
-                    android:layout_below="@+id/imgDog"
+                    android:layout_below="@+id/imgGame"
                     tools:text="Ragnarok"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 

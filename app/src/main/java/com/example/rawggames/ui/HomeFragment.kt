@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rawggames.adapter.TopRatingAdapter
 import com.example.rawggames.databinding.FragmentHomeBinding
 import com.example.rawggames.viewmodel.RawgViewModel
 
@@ -19,9 +21,13 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = rawgViewModel
+            recyclerViewTopRating.setHasFixedSize(true)
+            recyclerViewTopRating.adapter = TopRatingAdapter()
+            recyclerViewTopRating.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
         return binding.root
     }

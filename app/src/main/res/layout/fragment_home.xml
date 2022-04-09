@@ -7,9 +7,6 @@
         <variable
             name="viewModel"
             type="com.example.rawggames.viewmodel.RawgViewModel" />
-        <variable
-            name="homeFragment"
-            type="com.example.rawggames.ui.HomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,11 +24,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTopRating"
+            app:listTopRating="@{viewModel.listTopRating}"
             style="@style/RecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTopRating"
-            tools:itemCount="10"
             tools:listitem="@layout/horizontal_list_top_rating">
         </androidx.recyclerview.widget.RecyclerView>
 
