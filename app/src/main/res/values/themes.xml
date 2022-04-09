@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <!--  Default attribute content for all of horizontal_list layout  -->
+    <!--  Default attribute content for both of horizontal_list xml layout  -->
     <style name="ImageContent">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/list_image_size_height</item>
@@ -31,6 +31,7 @@
         <item name="android:layout_marginStart">@dimen/default_margin</item>
         <item name="android:layout_marginTop">@dimen/default_margin</item>
         <item name="android:layout_marginBottom">@dimen/default_margin</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextContent.Subtitle">
@@ -39,7 +40,7 @@
         <item name="android:textAppearance">?attr/textAppearanceBody2</item>
     </style>
 
-    <!--  Default attribute content for home_fragment  -->
+    <!--  Default attribute content for home_fragment xml layout  -->
     <style name="TextContent.RecyclerViewTitle">
         <item name="android:minHeight">@dimen/min_height</item>
         <item name="android:gravity">center_vertical</item>
@@ -52,5 +53,6 @@
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:clipToPadding">false</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
     </style>
 </resources>

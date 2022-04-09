@@ -34,8 +34,7 @@
                     style="@style/TextContent.Title"
                     android:layout_below="@+id/imgDog"
                     tools:text="Ragnarok"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textStyle="bold" />
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
                     android:id="@+id/tvGameReleased"
