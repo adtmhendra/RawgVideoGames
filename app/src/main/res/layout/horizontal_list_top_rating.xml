@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/default_margin"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="@dimen/default_card_corner_radius"
+    app:cardElevation="@dimen/default_card_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,13 +26,14 @@
                 <ImageView
                     android:id="@+id/imgDog"
                     style="@style/ImageContent"
-                    tools:src="@tools:sample/backgrounds/scenic" />
+                    tools:src="@tools:sample/backgrounds/scenic"
+                    android:contentDescription="@string/top_rating_image" />
 
                 <TextView
                     android:id="@+id/tvGameTitle"
                     style="@style/TextContent.Title"
                     android:layout_below="@+id/imgDog"
-                    android:text="GTA 5"
+                    tools:text="GTA 5"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textStyle="bold" />
 
@@ -40,8 +41,7 @@
                     android:id="@+id/tvGameRating"
                     style="@style/TextContent.Subtitle"
                     android:layout_below="@id/tvGameTitle"
-                    android:text="4.5"
-                    android:textAppearance="?attr/textAppearanceBody2" />
+                    tools:text="4.5" />
 
             </RelativeLayout>
 
