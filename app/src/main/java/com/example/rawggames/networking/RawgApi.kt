@@ -7,11 +7,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 private const val BASE_URL = "https://api.rawg.io/api/"
 
-private val moshi = Moshi.Builder().apply {
-    add(KotlinJsonAdapterFactory())
-}.build()
-
-val retrofit: Retrofit = Retrofit.Builder().apply {
+private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+private val retrofit: Retrofit = Retrofit.Builder().apply {
     addConverterFactory(MoshiConverterFactory.create(moshi))
     baseUrl(BASE_URL)
 }.build()

@@ -12,9 +12,11 @@ import com.example.rawggames.databinding.FragmentHomeBinding
 import com.example.rawggames.viewmodel.RawgViewModel
 
 class HomeFragment : Fragment() {
+
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val rawgViewModel: RawgViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -25,7 +27,6 @@ class HomeFragment : Fragment() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = rawgViewModel
-            recyclerViewTopRating.setHasFixedSize(true)
             recyclerViewTopRating.adapter = TopRatingAdapter()
             recyclerViewTopRating.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }

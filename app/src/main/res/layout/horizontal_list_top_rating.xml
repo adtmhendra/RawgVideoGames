@@ -12,12 +12,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="@dimen/default_padding">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/MaterialCardview"
             app:cardCornerRadius="@dimen/default_card_corner_radius"
+            app:cardElevation="@dimen/default_card_elevation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,26 +30,25 @@
                 <ImageView
                     android:id="@+id/imgGame"
                     style="@style/ImageContent"
-                    tools:src="@tools:sample/backgrounds/scenic"
                     android:contentDescription="@string/top_rating_image"
-                    app:imageUrl="@{topRating.backgroundImage}"/>
+                    app:imageUrl="@{topRating.backgroundImage}"
+                    tools:src="@tools:sample/backgrounds/scenic" />
 
                 <TextView
                     android:id="@+id/tvGameTitle"
                     style="@style/TextContent.Title"
                     android:layout_below="@+id/imgGame"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:text="@{topRating.name}"/>
+                    android:text="@{topRating.name}" />
 
                 <TextView
                     android:id="@+id/tvGameRating"
                     style="@style/TextContent.Subtitle"
                     android:layout_below="@id/tvGameTitle"
-                    android:text="@{topRating.rating.toString()}"/>
-
+                    android:text="@{topRating.rating.toString()}" />
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
