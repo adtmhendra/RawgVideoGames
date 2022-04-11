@@ -44,10 +44,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewLatestGame"
             style="@style/RecyclerView"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLatestGame"
-            tools:listitem="@layout/horizontal_list_latest_game" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTopRating"
+            tools:listitem="@layout/horizontal_list_latest_game">
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

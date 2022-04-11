@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/default_margin"
-    app:cardCornerRadius="@dimen/default_card_corner_radius"
-    app:cardElevation="@dimen/default_card_elevation">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="latestGame"
+            type="com.example.rawggames.model.LatestGame" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/MaterialCardview"
+            app:cardCornerRadius="@dimen/default_card_corner_radius"
+            app:cardElevation="@dimen/default_card_elevation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -26,26 +30,22 @@
                 <ImageView
                     android:id="@+id/imgGame"
                     style="@style/ImageContent"
-                    tools:src="@tools:sample/backgrounds/scenic"
-                    android:contentDescription="@string/latest_game_image" />
+                    android:contentDescription="@string/top_rating_image"
+                    tools:src="@tools:sample/backgrounds/scenic" />
 
                 <TextView
                     android:id="@+id/tvGameTitle"
                     style="@style/TextContent.Title"
-                    android:layout_below="@+id/imgGame"
-                    tools:text="Ragnarok"
-                    android:textAppearance="?attr/textAppearanceHeadline6" />
+                    android:layout_below="@+id/imgGame" />
 
                 <TextView
-                    android:id="@+id/tvGameReleased"
+                    android:id="@+id/tvGameRating"
                     style="@style/TextContent.Subtitle"
-                    android:layout_below="@id/tvGameTitle"
-                    tools:text="20 Oktober 2020" />
-
+                    android:layout_below="@id/tvGameTitle" />
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</layout>
