@@ -32,11 +32,11 @@ class TopRatingAdapter :
 
     companion object DiffCallback : DiffUtil.ItemCallback<TopRating>() {
         override fun areItemsTheSame(oldItem: TopRating, newItem: TopRating): Boolean {
-            return oldItem.backgroundImage == newItem.name
+            return oldItem.backgroundImage == newItem.backgroundImage
         }
 
         override fun areContentsTheSame(oldItem: TopRating, newItem: TopRating): Boolean {
-            return oldItem.backgroundImage == newItem.name
+            return oldItem.name == newItem.name
         }
     }
 }

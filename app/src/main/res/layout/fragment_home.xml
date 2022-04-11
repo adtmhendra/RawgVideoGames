@@ -10,46 +10,56 @@
             type="com.example.rawggames.viewmodel.RawgViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvTopRating"
-            style="@style/TextContent.RecyclerViewTitle"
-            android:text="@string/top_rating"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewTopRating"
-            style="@style/RecyclerView"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:listTopRating="@{viewModel.listTopRating}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTopRating"
-            tools:listitem="@layout/horizontal_list_top_rating">
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:id="@+id/tvTopRating"
+                style="@style/TextContent.RecyclerViewTitle"
+                android:text="@string/top_rating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvLatestGame"
-            style="@style/TextContent.RecyclerViewTitle"
-            android:layout_marginTop="@dimen/default_margin"
-            android:text="@string/latest_game"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopRating" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewTopRating"
+                style="@style/RecyclerView"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTopRating"
+                app:listTopRating="@{viewModel.listTopRating}"
+                tools:itemCount="2"
+                tools:listitem="@layout/horizontal_list_top_rating">
+            </androidx.recyclerview.widget.RecyclerView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewLatestGame"
-            style="@style/RecyclerView"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTopRating"
-            tools:listitem="@layout/horizontal_list_latest_game">
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:id="@+id/tvLatestGame"
+                style="@style/TextContent.RecyclerViewTitle"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@string/latest_game"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopRating" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewLatestGame"
+                style="@style/RecyclerView"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLatestGame"
+                app:listLatestGame="@{viewModel.listLatestGame}"
+                tools:itemCount="2"
+                tools:listitem="@layout/horizontal_list_latest_game">
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </layout>

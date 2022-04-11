@@ -30,18 +30,21 @@
                 <ImageView
                     android:id="@+id/imgGame"
                     style="@style/ImageContent"
-                    android:contentDescription="@string/top_rating_image"
+                    android:contentDescription="@string/latest_game_image"
+                    app:imageUrl="@{latestGame.backgroundImage}"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
                 <TextView
                     android:id="@+id/tvGameTitle"
                     style="@style/TextContent.Title"
-                    android:layout_below="@+id/imgGame" />
+                    android:layout_below="@+id/imgGame"
+                    android:text="@{latestGame.name}" />
 
                 <TextView
-                    android:id="@+id/tvGameRating"
+                    android:id="@+id/tvGameReleased"
                     style="@style/TextContent.Subtitle"
-                    android:layout_below="@id/tvGameTitle" />
+                    android:layout_below="@id/tvGameTitle"
+                    android:text="@{latestGame.released}" />
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
