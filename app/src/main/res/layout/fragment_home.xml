@@ -29,7 +29,6 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewTopRating"
                 style="@style/RecyclerView"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTopRating"
@@ -49,7 +48,6 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewLatestGame"
                 style="@style/RecyclerView"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLatestGame"

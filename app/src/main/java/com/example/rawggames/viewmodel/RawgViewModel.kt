@@ -5,12 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rawggames.model.*
+import com.example.rawggames.model.LatestGame
+import com.example.rawggames.model.State
+import com.example.rawggames.model.TopRating
 import com.example.rawggames.networking.RawgApi
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import retrofit2.HttpException
+
+private const val TAG = "RawgViewModel"
 
 class RawgViewModel : ViewModel() {
 
@@ -25,47 +27,46 @@ class RawgViewModel : ViewModel() {
 
     init {
         getTopRatingGame()
+        getLatestGame()
     }
 
     private fun getTopRatingGame() {
         viewModelScope.launch {
-            _state.value = State.LOADING
-            RawgApi.retrofitService.getListTopRating()
-                .enqueue(object : Callback<TopRatingResponse> {
-                    override fun onResponse(
-                        call: Call<TopRatingResponse>,
-                        response: Response<TopRatingResponse>,
-                    ) {
-                        if (response.isSuccessful) {
-                            _listTopRating.value = response.body()?.results!!
-                            _state.value = State.DONE
-                            Log.d("RawgViewModel", "Top rating status : ${response.code()}")
-                        }
-                    }
-
-                    override fun onFailure(call: Call<TopRatingResponse>, t: Throwable) {
-                        _state.value = State.ERROR
-                        Log.e("RawgViewModel", "Top rating error : ${t.message}")
-                    }
-                })
-
-            RawgApi.retrofitService.getLatestGame().enqueue(object : Callback<LatestGameResponse> {
-                override fun onResponse(
-                    call: Call<LatestGameResponse>,
-                    response: Response<LatestGameResponse>,
-                ) {
-                    if (response.isSuccessful) {
-                        _listLatestGame.value = response.body()?.results!!
-                        _state.value = State.DONE
-                        Log.d("RawgViewModel", "Latest game status : ${response.code()}")
-                    }
+            _state.postValue(State.LOADING)
+            val response = RawgApi.retrofitService.getListTopRating()
+            try {
+                if (response.isSuccessful) {
+                    _listTopRating.postValue(response.body()?.results!!)
+                    _state.postValue(State.DONE)
+                    Log.d(TAG, "Success : ${response.code()}")
+                } else {
+                    _state.postValue(State.ERROR)
+                    Log.e(TAG, "Error : ${response.code()}")
                 }
+            } catch (e: HttpException) {
+                _state.postValue(State.ERROR)
+                Log.e(TAG, "Error : ${e.message.toString()}")
+            }
+        }
+    }
 
-                override fun onFailure(call: Call<LatestGameResponse>, t: Throwable) {
-                    _state.value = State.ERROR
-                    Log.e("RawgViewModel", "Latest game error : ${t.message}")
+    private fun getLatestGame() {
+        viewModelScope.launch {
+            _state.postValue(State.LOADING)
+            val response = RawgApi.retrofitService.getLatestGame()
+            try {
+                if (response.isSuccessful) {
+                    _listLatestGame.postValue(response.body()?.results!!)
+                    _state.postValue(State.DONE)
+                    Log.d(TAG, "Success : ${response.code()}")
+                } else {
+                    _state.postValue(State.ERROR)
+                    Log.e(TAG, "Error : ${response.code()}")
                 }
-            })
+            } catch (e: HttpException) {
+                _state.postValue(State.ERROR)
+                Log.e(TAG, "Error : ${e.message.toString()}")
+            }
         }
     }
 }
