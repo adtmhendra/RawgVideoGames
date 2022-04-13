@@ -15,7 +15,7 @@
         android:padding="@dimen/default_padding">
 
         <com.google.android.material.card.MaterialCardView
-            style="@style/MaterialCardview"
+            style="@style/MaterialCardView"
             app:cardCornerRadius="@dimen/default_card_corner_radius"
             app:cardElevation="@dimen/default_card_elevation"
             app:layout_constraintBottom_toBottomOf="parent"

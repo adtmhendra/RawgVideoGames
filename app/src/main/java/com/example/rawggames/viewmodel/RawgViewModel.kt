@@ -37,14 +37,14 @@ class RawgViewModel : ViewModel() {
             try {
                 if (response.isSuccessful) {
                     _listTopRating.postValue(response.body()?.results!!)
-                    _state.postValue(State.DONE)
+                    _state.postValue(State.SUCCESS)
                     Log.d(TAG, "Success : ${response.code()}")
                 } else {
-                    _state.postValue(State.ERROR)
+                    _state.postValue(State.FAILED)
                     Log.e(TAG, "Error : ${response.code()}")
                 }
             } catch (e: HttpException) {
-                _state.postValue(State.ERROR)
+                _state.postValue(State.FAILED)
                 Log.e(TAG, "Error : ${e.message.toString()}")
             }
         }
@@ -57,14 +57,14 @@ class RawgViewModel : ViewModel() {
             try {
                 if (response.isSuccessful) {
                     _listLatestGame.postValue(response.body()?.results!!)
-                    _state.postValue(State.DONE)
+                    _state.postValue(State.SUCCESS)
                     Log.d(TAG, "Success : ${response.code()}")
                 } else {
-                    _state.postValue(State.ERROR)
+                    _state.postValue(State.FAILED)
                     Log.e(TAG, "Error : ${response.code()}")
                 }
             } catch (e: HttpException) {
-                _state.postValue(State.ERROR)
+                _state.postValue(State.FAILED)
                 Log.e(TAG, "Error : ${e.message.toString()}")
             }
         }

@@ -12,6 +12,27 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="actionBarTheme">@style/ThemeOverlay.RawgGames.ActionBar</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.RawgGames.TitleMedium</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.RawgGames.BodyLarge</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.RawgGames.BodySmall</item>
+    </style>
+
+    <style name="ThemeOverlay.RawgGames.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TextAppearance.RawgGames.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TextAppearance.RawgGames.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TextAppearance.RawgGames.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/poppins_regular</item>
     </style>
 
     <!--  Default attribute content for both of horizontal_list xml layout  -->
@@ -27,17 +48,19 @@
     </style>
 
     <style name="TextContent.Title">
-        <item name="android:layout_margin">@dimen/default_margin</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textAppearance">?attr/textAppearanceHeadline6</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
     </style>
 
     <style name="TextContent.Subtitle">
         <item name="android:layout_marginStart">@dimen/default_margin</item>
         <item name="android:layout_marginBottom">@dimen/default_margin</item>
-        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodySmall</item>
     </style>
 
     <!--  Default attribute content for home_fragment xml layout  -->
@@ -45,7 +68,7 @@
         <item name="android:minHeight">@dimen/min_height</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textAppearance">?attr/textAppearanceHeadline6</item>
+        <item name="android:textAppearance">?attr/textAppearanceTitleMedium</item>
     </style>
 
     <style name="RecyclerView">
@@ -54,7 +77,7 @@
         <item name="android:clipToPadding">false</item>
     </style>
 
-    <style name="MaterialCardview">
+    <style name="MaterialCardView">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">200dp</item>
         <item name="android:layout_marginBottom">@dimen/default_margin</item>
