@@ -30,11 +30,14 @@ class HomeFragment : Fragment() {
             viewModel = rawgViewModel
 
             recyclerViewTopRating.apply {
+                setHasFixedSize(true)
                 adapter = TopRatingAdapter()
                 layoutManager =
                     LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             }
+
             recyclerViewLatestGame.apply {
+                setHasFixedSize(true)
                 adapter = LatestGameAdapter()
                 layoutManager =
                     LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)

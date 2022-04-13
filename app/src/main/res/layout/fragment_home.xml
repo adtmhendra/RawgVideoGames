@@ -5,6 +5,7 @@
     tools:context=".ui.HomeFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.rawggames.viewmodel.RawgViewModel" />
@@ -16,26 +17,31 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tvTopRating"
                 style="@style/TextContent.RecyclerViewTitle"
+                android:layout_marginTop="8dp"
                 android:text="@string/top_rating"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator"
+                app:textViewState="@{viewModel.state}" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewTopRating"
-                style="@style/RecyclerView"
+            <LinearLayout
+                android:id="@+id/lnTopRating"
+                style="@style/LinearLayoutRecyclerView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTopRating"
-                app:listTopRating="@{viewModel.listTopRating}"
-                tools:itemCount="2"
-                tools:listitem="@layout/horizontal_list_top_rating">
-            </androidx.recyclerview.widget.RecyclerView>
+                app:layout_constraintTop_toBottomOf="@+id/tvTopRating">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewTopRating"
+                    style="@style/RecyclerView"
+                    app:listTopRating="@{viewModel.listTopRating}"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/horizontal_list_top_rating" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvLatestGame"
@@ -43,18 +49,45 @@
                 android:layout_marginTop="@dimen/default_margin"
                 android:text="@string/latest_game"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopRating" />
+                app:layout_constraintTop_toBottomOf="@+id/lnTopRating"
+                app:textViewState="@{viewModel.state}" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewLatestGame"
-                style="@style/RecyclerView"
+            <LinearLayout
+                android:id="@+id/lnLatestGame"
+                style="@style/LinearLayoutRecyclerView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvLatestGame"
-                app:listLatestGame="@{viewModel.listLatestGame}"
-                tools:itemCount="2"
-                tools:listitem="@layout/horizontal_list_latest_game">
-            </androidx.recyclerview.widget.RecyclerView>
+                app:layout_constraintTop_toBottomOf="@+id/tvLatestGame">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewLatestGame"
+                    style="@style/RecyclerView"
+                    app:listLatestGame="@{viewModel.listLatestGame}"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/horizontal_list_latest_game" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgStateHandle"
+                style="@style/imgStateHandle"
+                app:imageViewState="@{viewModel.state}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/linearProgressIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="visible"
+                app:indicatorColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:linearProgressBarState="@{viewModel.state}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

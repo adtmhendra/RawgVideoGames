@@ -10,7 +10,6 @@ import com.example.rawggames.model.State
 import com.example.rawggames.model.TopRating
 import com.example.rawggames.networking.RawgApi
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
 private const val TAG = "RawgViewModel"
 
@@ -32,19 +31,19 @@ class RawgViewModel : ViewModel() {
 
     private fun getTopRatingGame() {
         viewModelScope.launch {
-            _state.postValue(State.LOADING)
-            val response = RawgApi.retrofitService.getListTopRating()
+            _state.value = State.LOADING
             try {
+                val response = RawgApi.retrofitService.getListTopRating()
                 if (response.isSuccessful) {
                     _listTopRating.postValue(response.body()?.results!!)
-                    _state.postValue(State.SUCCESS)
+                    _state.value = State.SUCCESS
                     Log.d(TAG, "Success : ${response.code()}")
                 } else {
-                    _state.postValue(State.FAILED)
+                    _state.value = State.FAILED
                     Log.e(TAG, "Error : ${response.code()}")
                 }
-            } catch (e: HttpException) {
-                _state.postValue(State.FAILED)
+            } catch (e: Exception) {
+                _state.value = State.FAILED
                 Log.e(TAG, "Error : ${e.message.toString()}")
             }
         }
@@ -52,19 +51,19 @@ class RawgViewModel : ViewModel() {
 
     private fun getLatestGame() {
         viewModelScope.launch {
-            _state.postValue(State.LOADING)
-            val response = RawgApi.retrofitService.getLatestGame()
+            _state.value = State.LOADING
             try {
+                val response = RawgApi.retrofitService.getLatestGame()
                 if (response.isSuccessful) {
                     _listLatestGame.postValue(response.body()?.results!!)
-                    _state.postValue(State.SUCCESS)
+                    _state.value = State.SUCCESS
                     Log.d(TAG, "Success : ${response.code()}")
                 } else {
-                    _state.postValue(State.FAILED)
+                    _state.value = State.FAILED
                     Log.e(TAG, "Error : ${response.code()}")
                 }
-            } catch (e: HttpException) {
-                _state.postValue(State.FAILED)
+            } catch (e: Exception) {
+                _state.value = State.FAILED
                 Log.e(TAG, "Error : ${e.message.toString()}")
             }
         }
