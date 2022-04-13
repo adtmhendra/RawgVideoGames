@@ -9,4 +9,6 @@
     <dimen name="default_card_elevation">2dp</dimen>
     <dimen name="default_linear_layout_recyclerview">280dp</dimen>
     <dimen name="list_image_size_height">194dp</dimen>
+    <dimen name="default_splashscreen_image_size">150dp</dimen>
+    <dimen name="default_fragment_container_size">0dp</dimen>
 </resources>

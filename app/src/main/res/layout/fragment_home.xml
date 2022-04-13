@@ -5,7 +5,6 @@
     tools:context=".ui.HomeFragment">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.rawggames.viewmodel.RawgViewModel" />
@@ -22,7 +21,7 @@
             <TextView
                 android:id="@+id/tvTopRating"
                 style="@style/TextContent.RecyclerViewTitle"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/default_home_screen_margin"
                 android:text="@string/top_rating"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator"
@@ -70,6 +69,7 @@
             <ImageView
                 android:id="@+id/imgStateHandle"
                 style="@style/imgStateHandle"
+                android:contentDescription="@string/no_internet_connection_error_image"
                 app:imageViewState="@{viewModel.state}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:linearProgressBarState="@{viewModel.state}" />
+                app:linearProgressBarState="@{viewModel.state}"
+                app:trackColor="@android:color/holo_orange_light" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -39,24 +39,16 @@ fun bindTextViewState(imageView: ImageView, imageUrl: String?) {
 
 @BindingAdapter("imageViewState")
 fun bindImageViewState(imageView: ImageView, state: State) {
-    when (state) {
-        State.LOADING -> {
-            imageView.visibility = View.VISIBLE
-            imageView.setImageResource(R.drawable.loading_animation)
-        }
-        State.FAILED -> {
-            imageView.visibility = View.VISIBLE
-            imageView.setImageResource(R.drawable.ic_connection_error)
-        }
-        else -> {
-            imageView.visibility = View.GONE
-        }
+    if (state == State.FAILED) {
+        imageView.visibility = View.VISIBLE
+        imageView.setImageResource(R.drawable.ic_connection_error)
     }
 }
 
 @BindingAdapter("textViewState")
 fun bindTextViewState(textView: TextView, state: State) {
-    if (state == State.FAILED) textView.visibility = View.GONE
+    if (state == State.LOADING || state == State.FAILED) textView.visibility = View.GONE
+    else textView.visibility = View.VISIBLE
 }
 
 @BindingAdapter("linearProgressBarState")
