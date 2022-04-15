@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.RawgGames" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -18,7 +18,7 @@
         <item name="textAppearanceBodySmall">@style/TextAppearance.RawgGames.BodySmall</item>
     </style>
 
-    <style name="ThemeOverlay.RawgGames.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+    <style name="ThemeOverlay.RawgGames.ActionBar" parent="ThemeOverlay.MaterialComponents.ActionBar">
         <item name="fontFamily">@font/poppins_semibold</item>
         <item name="android:fontFamily">@font/poppins_semibold</item>
     </style>
@@ -79,6 +79,12 @@
         <item name="android:textAppearance">?attr/textAppearanceTitleMedium</item>
     </style>
 
+    <style name="RecyclerView">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
     <style name="LinearLayoutRecyclerView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/default_linear_layout_recyclerview</item>
@@ -87,15 +93,23 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
-    <style name="RecyclerView">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:clipToPadding">false</item>
-    </style>
-
-    <style name="imgStateHandle">
+    <style name="ImgStateHandle">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="FrameContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="FrameContainer.SearchView">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:hint">@string/search_games</item>
+        <item name="android:inputType">text</item>
+        <item name="android:padding">@dimen/default_search_view_padding</item>
+        <item name="android:minHeight">@dimen/min_height</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 </resources>

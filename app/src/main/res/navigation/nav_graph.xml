@@ -9,10 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="com.example.rawggames.ui.HomeFragment"
         android:label="Rawg Games"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/homeSearch" />
+    </fragment>
     <fragment
-        android:id="@+id/searchFragment"
+        android:id="@+id/homeSearch"
         android:name="com.example.rawggames.ui.SearchFragment"
-        android:label="Pencarian"
+        android:label="@string/search"
         tools:layout="@layout/fragment_search" />
 </navigation>

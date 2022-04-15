@@ -8,7 +8,12 @@
     <dimen name="default_card_corner_radius">8dp</dimen>
     <dimen name="default_card_elevation">2dp</dimen>
     <dimen name="default_linear_layout_recyclerview">280dp</dimen>
-    <dimen name="list_image_size_height">194dp</dimen>
+    <dimen name="default_stroke_width_focus">1dp</dimen>
+    <dimen name="default_search_view_padding">12dp</dimen>
+    <dimen name="default_frame_container_padding">16dp</dimen>
     <dimen name="default_splashscreen_image_size">150dp</dimen>
-    <dimen name="default_fragment_container_size">0dp</dimen>
+    <dimen name="default_radius">8dp</dimen>
+    <dimen name="default_indicator_size">35dp</dimen>
+    <dimen name="list_image_size_height">194dp</dimen>
+    <dimen name="zero_dp">0dp</dimen>
 </resources>

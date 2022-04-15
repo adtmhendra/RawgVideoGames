@@ -8,23 +8,62 @@
         <variable
             name="viewModel"
             type="com.example.rawggames.viewmodel.RawgViewModel" />
+
+        <variable
+            name="homeFragment"
+            type="com.example.rawggames.ui.HomeFragment" />
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <RelativeLayout
+                android:id="@+id/rlSearchView"
+                style="@style/FrameContainer"
+                android:padding="@dimen/default_frame_container_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundColor="@color/soft_grey"
+                    app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/default_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/default_radius"
+                    app:boxCornerRadiusTopStart="@dimen/default_radius"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="@dimen/zero_dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/searchView"
+                        style="@style/FrameContainer.SearchView"
+                        android:drawableEnd="@drawable/ic_search"
+                        android:drawableTint="@android:color/darker_gray"
+                        android:focusableInTouchMode="false"
+                        android:onClick="@{() -> homeFragment.goToSearchFragment()}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/tvTopRating"
                 style="@style/TextContent.RecyclerViewTitle"
-                android:layout_marginTop="@dimen/default_home_screen_margin"
                 android:text="@string/top_rating"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator"
+                app:layout_constraintTop_toBottomOf="@+id/rlSearchView"
                 app:textViewState="@{viewModel.state}" />
 
             <LinearLayout
@@ -68,7 +107,7 @@
 
             <ImageView
                 android:id="@+id/imgStateHandle"
-                style="@style/imgStateHandle"
+                style="@style/ImgStateHandle"
                 android:contentDescription="@string/no_internet_connection_error_image"
                 app:imageViewState="@{viewModel.state}"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -77,18 +116,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/linearProgressIndicator"
-                android:layout_width="match_parent"
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/circularProgressIndicator"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:visibility="visible"
+                app:circularProgressBarState="@{viewModel.state}"
                 app:indicatorColor="@color/black"
+                app:indicatorSize="@dimen/default_indicator_size"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:linearProgressBarState="@{viewModel.state}"
-                app:trackColor="@android:color/holo_orange_light" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

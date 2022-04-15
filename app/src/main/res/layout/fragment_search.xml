@@ -7,6 +7,7 @@
         <variable
             name="viewModel"
             type="com.example.rawggames.viewmodel.RawgViewModel" />
+
         <variable
             name="searchFragment"
             type="com.example.rawggames.ui.SearchFragment" />
@@ -17,16 +18,38 @@
         android:layout_height="match_parent"
         tools:context=".ui.SearchFragment">
 
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <RelativeLayout
+            android:id="@+id/rlSearchView"
+            style="@style/FrameContainer"
+            android:padding="@dimen/default_frame_container_padding"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="@color/soft_grey"
+                app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+                app:boxCornerRadiusBottomStart="@dimen/default_radius"
+                app:boxCornerRadiusTopEnd="@dimen/default_radius"
+                app:boxCornerRadiusTopStart="@dimen/default_radius"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidth="@dimen/zero_dp"
+                app:boxStrokeWidthFocused="@dimen/default_stroke_width_focus"
+                app:endIconMode="clear_text"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchView"
+                    style="@style/FrameContainer.SearchView" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

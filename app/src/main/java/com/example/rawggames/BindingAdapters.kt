@@ -12,7 +12,7 @@ import com.example.rawggames.adapter.TopRatingAdapter
 import com.example.rawggames.model.LatestGame
 import com.example.rawggames.model.State
 import com.example.rawggames.model.TopRating
-import com.google.android.material.progressindicator.LinearProgressIndicator
+import com.google.android.material.progressindicator.CircularProgressIndicator
 
 @BindingAdapter("listTopRating")
 fun bindRecyclerViewTopRating(recyclerView: RecyclerView, listTopRating: List<TopRating>?) {
@@ -51,7 +51,10 @@ fun bindTextViewState(textView: TextView, state: State) {
     else textView.visibility = View.VISIBLE
 }
 
-@BindingAdapter("linearProgressBarState")
-fun bindLinearProgressBarState(linearProgressIndicator: LinearProgressIndicator, state: State) {
-    if (state != State.LOADING) linearProgressIndicator.visibility = View.GONE
+@BindingAdapter("circularProgressBarState")
+fun bindCircularProgressBarState(
+    circularProgressIndicator: CircularProgressIndicator,
+    state: State,
+) {
+    if (state != State.LOADING) circularProgressIndicator.visibility = View.GONE
 }

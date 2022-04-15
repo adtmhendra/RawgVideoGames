@@ -7,4 +7,6 @@
     <string name="top_rating_image">Top rating image</string>
     <string name="splashscreen_image">Splashscreen image</string>
     <string name="no_internet_connection_error_image">No internet connection error image</string>
+    <string name="search_games">Search games..</string>
+    <string name="search">Search</string>
 </resources>
