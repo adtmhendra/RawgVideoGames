@@ -40,5 +40,4 @@ class LatestGameAdapter :
             return oldItem.name == newItem.name
         }
     }
-
 }

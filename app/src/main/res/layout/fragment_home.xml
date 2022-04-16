@@ -27,7 +27,6 @@
             <RelativeLayout
                 android:id="@+id/rlSearchView"
                 style="@style/FrameContainer"
-                android:padding="@dimen/default_frame_container_padding"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -77,7 +76,6 @@
                     android:id="@+id/recyclerViewTopRating"
                     style="@style/RecyclerView"
                     app:listTopRating="@{viewModel.listTopRating}"
-                    tools:itemCount="2"
                     tools:listitem="@layout/horizontal_list_top_rating" />
             </LinearLayout>
 
@@ -101,13 +99,12 @@
                     android:id="@+id/recyclerViewLatestGame"
                     style="@style/RecyclerView"
                     app:listLatestGame="@{viewModel.listLatestGame}"
-                    tools:itemCount="2"
                     tools:listitem="@layout/horizontal_list_latest_game" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/imgStateHandle"
-                style="@style/ImgStateHandle"
+                style="@style/ImageView.ImgStateHandle"
                 android:contentDescription="@string/no_internet_connection_error_image"
                 app:imageViewState="@{viewModel.state}"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -118,12 +115,8 @@
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/circularProgressIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
+                style="@style/CircularProgressBar"
                 app:circularProgressBarState="@{viewModel.state}"
-                app:indicatorColor="@color/black"
-                app:indicatorSize="@dimen/default_indicator_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

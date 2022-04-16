@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.SearchFragment">
 
     <data>
         <variable
@@ -16,12 +17,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.SearchFragment">
+        android:animateLayoutChanges="true">
 
-        <RelativeLayout
+        <FrameLayout
             android:id="@+id/rlSearchView"
             style="@style/FrameContainer"
-            android:padding="@dimen/default_frame_container_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -39,16 +39,69 @@
                 app:boxStrokeColor="@color/black"
                 app:boxStrokeWidth="@dimen/zero_dp"
                 app:boxStrokeWidthFocused="@dimen/default_stroke_width_focus"
-                app:endIconMode="clear_text"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/searchView"
-                    style="@style/FrameContainer.SearchView" />
+                    style="@style/FrameContainer.SearchView"
+                    android:paddingStart="@dimen/default_search_hint_padding"
+                    android:paddingEnd="@dimen/default_search_hint_padding" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-        </RelativeLayout>
+            <ImageView
+                android:id="@+id/imgBackToHome"
+                style="@style/ImageView.SearchBar"
+                android:layout_gravity="start|center_vertical"
+                android:contentDescription="@string/button_back_to_home_screen"
+                android:onClick="@{() -> searchFragment.goToHomeFragment()}"
+                android:src="@drawable/ic_back" />
+
+            <ImageView
+                android:id="@+id/imgSearchGames"
+                style="@style/ImageView.SearchBar"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="@string/button_search_game"
+                android:onClick="@{() -> searchFragment.getSearchedGames()}"
+                android:src="@drawable/ic_search" />
+
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSearchedGames"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:padding="@dimen/default_padding"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rlSearchView"
+            app:listSearchedGames="@{viewModel.listSearchedGames}"
+            app:spanCount="2"
+            tools:itemCount="4"
+            tools:listitem="@layout/vertical_list_searched_games" />
+
+        <ImageView
+            android:id="@+id/imgStateHandle"
+            style="@style/ImageView.ImgStateHandle"
+            android:contentDescription="@string/no_internet_connection_error_image"
+            app:imageViewState="@{viewModel.searchState}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/circularSearchProgressIndicator"
+            style="@style/CircularProgressBar"
+            app:circularProgressBarState="@{viewModel.searchState}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rlSearchView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

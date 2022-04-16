@@ -8,8 +8,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.rawggames.adapter.LatestGameAdapter
+import com.example.rawggames.adapter.SearchGameAdapter
 import com.example.rawggames.adapter.TopRatingAdapter
 import com.example.rawggames.model.LatestGame
+import com.example.rawggames.model.SearchedGame
 import com.example.rawggames.model.State
 import com.example.rawggames.model.TopRating
 import com.google.android.material.progressindicator.CircularProgressIndicator
@@ -23,6 +25,12 @@ fun bindRecyclerViewTopRating(recyclerView: RecyclerView, listTopRating: List<To
 @BindingAdapter("listLatestGame")
 fun bindRecyclerViewLatestGame(recyclerView: RecyclerView, listLatestGame: List<LatestGame>?) {
     val adapter = recyclerView.adapter as LatestGameAdapter
+    adapter.submitList(listLatestGame)
+}
+
+@BindingAdapter("listSearchedGames")
+fun bindRecyclerViewSearchedGames(recyclerView: RecyclerView, listLatestGame: List<SearchedGame>?) {
+    val adapter = recyclerView.adapter as SearchGameAdapter
     adapter.submitList(listLatestGame)
 }
 
@@ -42,7 +50,7 @@ fun bindImageViewState(imageView: ImageView, state: State) {
     if (state == State.FAILED) {
         imageView.visibility = View.VISIBLE
         imageView.setImageResource(R.drawable.ic_connection_error)
-    }
+    } else imageView.visibility = View.GONE
 }
 
 @BindingAdapter("textViewState")
@@ -56,5 +64,6 @@ fun bindCircularProgressBarState(
     circularProgressIndicator: CircularProgressIndicator,
     state: State,
 ) {
-    if (state != State.LOADING) circularProgressIndicator.visibility = View.GONE
+    if (state == State.LOADING) circularProgressIndicator.visibility = View.VISIBLE
+    else circularProgressIndicator.visibility = View.GONE
 }

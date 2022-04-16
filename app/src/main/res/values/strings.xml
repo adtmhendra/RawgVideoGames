@@ -6,7 +6,11 @@
     <string name="latest_game_image">Latest game image</string>
     <string name="top_rating_image">Top rating image</string>
     <string name="splashscreen_image">Splashscreen image</string>
+    <string name="searched_game_image">Searched game image</string>
     <string name="no_internet_connection_error_image">No internet connection error image</string>
     <string name="search_games">Search games..</string>
     <string name="search">Search</string>
+    <string name="please_enter_your_keyword">Please enter your keyword</string>
+    <string name="button_back_to_home_screen">Button back to home screen</string>
+    <string name="button_search_game">Button search game</string>
 </resources>

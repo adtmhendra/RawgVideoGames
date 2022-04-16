@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rawggames.R
@@ -19,7 +19,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val rawgViewModel: RawgViewModel by viewModels()
+    private val rawgViewModel: RawgViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,22 +33,30 @@ class HomeFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = rawgViewModel
             homeFragment = this@HomeFragment
-
-            recyclerViewTopRating.apply {
-                setHasFixedSize(true)
-                adapter = TopRatingAdapter()
-                layoutManager =
-                    LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-            }
-
-            recyclerViewLatestGame.apply {
-                setHasFixedSize(true)
-                adapter = LatestGameAdapter()
-                layoutManager =
-                    LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-            }
         }
+
+        setTopRatingRecyclerView()
+        setLatestGameRecyclerView()
+
         return binding.root
+    }
+
+    private fun setTopRatingRecyclerView() {
+        binding.recyclerViewTopRating.apply {
+            setHasFixedSize(true)
+            adapter = TopRatingAdapter()
+            layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
+
+    private fun setLatestGameRecyclerView() {
+        binding.recyclerViewLatestGame.apply {
+            setHasFixedSize(true)
+            adapter = LatestGameAdapter()
+            layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        }
     }
 
     fun goToSearchFragment() {
