@@ -2,11 +2,11 @@ package com.example.rawggames.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -32,7 +32,7 @@ class SearchFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = rawgViewModel
             searchFragment = this@SearchFragment
-            searchView.requestFocus() // Set SearchView to auto focus
+            edtSearch.requestFocus() // Set SearchView to auto focus
         }
 
         setSearchGameRecyclerView()
@@ -47,14 +47,22 @@ class SearchFragment : Fragment() {
         }
     }
 
+    fun setActionSearchToKeyboard() {
+        binding.edtSearch.setOnKeyListener { _, i, keyEvent ->
+            if (keyEvent.action == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
+                getSearchedGames()
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
+    }
+
     fun getSearchedGames() {
         hideKeyboard()
         rawgViewModel.isResetSearchGame(true)
-        query = binding.searchView.text.toString().lowercase().trim()
-        if (query.isNotEmpty()) rawgViewModel.getSearchedGames(query)
-        else Toast.makeText(requireContext(),
-            resources.getString(R.string.please_enter_your_keyword),
-            Toast.LENGTH_SHORT).show()
+        query = binding.edtSearch.text.toString().lowercase().trim()
+        if (query.isEmpty()) return
+        rawgViewModel.getSearchedGames(query)
     }
 
     private fun hideKeyboard() {

@@ -20,8 +20,8 @@
         android:animateLayoutChanges="true">
 
         <FrameLayout
-            android:id="@+id/rlSearchView"
-            style="@style/FrameContainer"
+            android:id="@+id/flSearchView"
+            style="@style/SearchBarContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -42,8 +42,10 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/searchView"
-                    style="@style/FrameContainer.SearchView"
+                    android:id="@+id/edtSearch"
+                    style="@style/SearchBarContainer.SearchView"
+                    android:imeOptions="actionSearch"
+                    android:onClick="@{() -> searchFragment.setActionSearchToKeyboard()}"
                     android:paddingStart="@dimen/default_search_hint_padding"
                     android:paddingEnd="@dimen/default_search_hint_padding"
                     android:textColorHint="@color/soft_blue" />
@@ -80,7 +82,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rlSearchView"
+            app:layout_constraintTop_toBottomOf="@+id/flSearchView"
             app:listSearchedGames="@{viewModel.listSearchedGames}"
             app:spanCount="2"
             tools:itemCount="4"
@@ -115,7 +117,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rlSearchView" />
+            app:layout_constraintTop_toBottomOf="@+id/flSearchView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

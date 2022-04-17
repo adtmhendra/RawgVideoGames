@@ -101,13 +101,13 @@
         <item name="tint">@color/soft_blue</item>
     </style>
 
-    <style name="FrameContainer">
+    <style name="SearchBarContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/default_frame_container_padding</item>
     </style>
 
-    <style name="FrameContainer.SearchView">
+    <style name="SearchBarContainer.SearchView">
         <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:hint">@string/search_games</item>
         <item name="android:inputType">text</item>

@@ -10,7 +10,6 @@
     <string name="no_internet_connection_error_image">No internet connection error image</string>
     <string name="search_games">Search games..</string>
     <string name="search">Search</string>
-    <string name="please_enter_your_keyword">Please enter your keyword</string>
     <string name="button_back_to_home_screen">Button back to home screen</string>
     <string name="button_search_game">Button search game</string>
     <string name="data_is_empty_image">Data is empty image</string>
