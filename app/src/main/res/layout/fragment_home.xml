@@ -51,7 +51,8 @@
                         android:drawableEnd="@drawable/ic_search"
                         android:drawableTint="@android:color/darker_gray"
                         android:focusableInTouchMode="false"
-                        android:onClick="@{() -> homeFragment.goToSearchFragment()}" />
+                        android:onClick="@{() -> homeFragment.goToSearchFragment()}"
+                        android:textColorHint="@color/soft_blue" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +121,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/rlSearchView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

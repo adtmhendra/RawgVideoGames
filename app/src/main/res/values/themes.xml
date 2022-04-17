@@ -87,7 +87,7 @@
     </style>
 
     <style name="ImageView">
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
 
@@ -98,7 +98,7 @@
     <style name="ImageView.SearchBar">
         <item name="android:paddingStart">@dimen/default_frame_container_padding</item>
         <item name="android:paddingEnd">@dimen/default_frame_container_padding</item>
-        <item name="tint">@color/black</item>
+        <item name="tint">@color/soft_blue</item>
     </style>
 
     <style name="FrameContainer">
@@ -111,7 +111,6 @@
         <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:hint">@string/search_games</item>
         <item name="android:inputType">text</item>
-        <item name="android:padding">@dimen/default_search_view_padding</item>
         <item name="android:minHeight">@dimen/min_height</item>
         <item name="android:gravity">center_vertical</item>
     </style>

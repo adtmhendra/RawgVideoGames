@@ -36,7 +36,7 @@
                 app:boxCornerRadiusBottomStart="@dimen/default_radius"
                 app:boxCornerRadiusTopEnd="@dimen/default_radius"
                 app:boxCornerRadiusTopStart="@dimen/default_radius"
-                app:boxStrokeColor="@color/black"
+                app:boxStrokeColor="@color/soft_blue"
                 app:boxStrokeWidth="@dimen/zero_dp"
                 app:boxStrokeWidthFocused="@dimen/default_stroke_width_focus"
                 app:hintEnabled="false">
@@ -45,7 +45,8 @@
                     android:id="@+id/searchView"
                     style="@style/FrameContainer.SearchView"
                     android:paddingStart="@dimen/default_search_hint_padding"
-                    android:paddingEnd="@dimen/default_search_hint_padding" />
+                    android:paddingEnd="@dimen/default_search_hint_padding"
+                    android:textColorHint="@color/soft_blue" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,7 +56,8 @@
                 android:layout_gravity="start|center_vertical"
                 android:contentDescription="@string/button_back_to_home_screen"
                 android:onClick="@{() -> searchFragment.goToHomeFragment()}"
-                android:src="@drawable/ic_back" />
+                android:src="@drawable/ic_back"
+                tools:ignore="RedundantDescriptionCheck" />
 
             <ImageView
                 android:id="@+id/imgSearchGames"
@@ -63,7 +65,8 @@
                 android:layout_gravity="end|center_vertical"
                 android:contentDescription="@string/button_search_game"
                 android:onClick="@{() -> searchFragment.getSearchedGames()}"
-                android:src="@drawable/ic_search" />
+                android:src="@drawable/ic_search"
+                tools:ignore="RedundantDescriptionCheck" />
 
         </FrameLayout>
 
