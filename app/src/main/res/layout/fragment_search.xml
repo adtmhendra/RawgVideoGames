@@ -97,6 +97,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imgEmptyData"
+            style="@style/ImageView.ImgStateHandle"
+            android:contentDescription="@string/data_is_empty_image"
+            app:imageViewState="@{viewModel.searchState}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/circularSearchProgressIndicator"
             style="@style/CircularProgressBar"

@@ -15,6 +15,7 @@ import com.example.rawggames.model.SearchedGame
 import com.example.rawggames.model.State
 import com.example.rawggames.model.TopRating
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.google.android.material.textfield.TextInputLayout
 
 @BindingAdapter("listTopRating")
 fun bindRecyclerViewTopRating(recyclerView: RecyclerView, listTopRating: List<TopRating>?) {
@@ -47,15 +48,22 @@ fun bindTextViewState(imageView: ImageView, imageUrl: String?) {
 
 @BindingAdapter("imageViewState")
 fun bindImageViewState(imageView: ImageView, state: State) {
-    if (state == State.FAILED) {
-        imageView.visibility = View.VISIBLE
-        imageView.setImageResource(R.drawable.ic_connection_error)
-    } else imageView.visibility = View.GONE
+    when (state) {
+        State.FAILED -> {
+            imageView.visibility = View.VISIBLE
+            imageView.setImageResource(R.drawable.ic_empty_data)
+        }
+        State.ERROR -> {
+            imageView.visibility = View.VISIBLE
+            imageView.setImageResource(R.drawable.ic_connection_error)
+        }
+        else -> imageView.visibility = View.GONE
+    }
 }
 
 @BindingAdapter("textViewState")
 fun bindTextViewState(textView: TextView, state: State) {
-    if (state == State.LOADING || state == State.FAILED) textView.visibility = View.GONE
+    if (state == State.LOADING || state == State.ERROR) textView.visibility = View.GONE
     else textView.visibility = View.VISIBLE
 }
 
@@ -66,4 +74,10 @@ fun bindCircularProgressBarState(
 ) {
     if (state == State.LOADING) circularProgressIndicator.visibility = View.VISIBLE
     else circularProgressIndicator.visibility = View.GONE
+}
+
+@BindingAdapter("searchBarState")
+fun searchBarState(textInputLayout: TextInputLayout, state: State) {
+    if (state == State.ERROR) textInputLayout.visibility = View.GONE
+    else textInputLayout.visibility = View.VISIBLE
 }

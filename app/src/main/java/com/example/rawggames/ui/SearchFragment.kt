@@ -1,9 +1,11 @@
 package com.example.rawggames.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -46,12 +48,22 @@ class SearchFragment : Fragment() {
     }
 
     fun getSearchedGames() {
+        hideKeyboard()
         rawgViewModel.isResetSearchGame(true)
         query = binding.searchView.text.toString().lowercase().trim()
         if (query.isNotEmpty()) rawgViewModel.getSearchedGames(query)
         else Toast.makeText(requireContext(),
             resources.getString(R.string.please_enter_your_keyword),
             Toast.LENGTH_SHORT).show()
+    }
+
+    private fun hideKeyboard() {
+        val view = activity?.currentFocus
+        if (view != null) {
+            val inputMethodManager =
+                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     fun goToHomeFragment() {

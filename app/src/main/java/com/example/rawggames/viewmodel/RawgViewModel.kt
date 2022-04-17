@@ -25,11 +25,11 @@ class RawgViewModel : ViewModel() {
     private val _listSearchedGames = MutableLiveData<List<SearchedGame?>?>()
     val listSearchedGames: LiveData<List<SearchedGame?>?> get() = _listSearchedGames
 
-    private val _state = MutableLiveData<State>()
-    val state: LiveData<State> get() = _state
+    private val _state = MutableLiveData<State?>()
+    val state: LiveData<State?> get() = _state
 
-    private val _searchState = MutableLiveData<State>()
-    val searchState: LiveData<State> get() = _searchState
+    private val _searchState = MutableLiveData<State?>()
+    val searchState: LiveData<State?> get() = _searchState
 
     init {
         getTopRatingGame()
@@ -47,11 +47,11 @@ class RawgViewModel : ViewModel() {
                     _state.value = State.SUCCESS
                     Log.d(TAG, "Success : ${response.code()}")
                 } else {
-                    _state.value = State.FAILED
+                    _state.value = State.ERROR
                     Log.e(TAG, "Error : ${response.code()}")
                 }
             } catch (e: Exception) {
-                _state.value = State.FAILED
+                _state.value = State.ERROR
                 Log.e(TAG, "Error : ${e.message.toString()}")
             }
         }
@@ -67,11 +67,11 @@ class RawgViewModel : ViewModel() {
                     _state.value = State.SUCCESS
                     Log.d(TAG, "Success : ${response.code()}")
                 } else {
-                    _state.value = State.FAILED
+                    _state.value = State.ERROR
                     Log.e(TAG, "Error : ${response.code()}")
                 }
             } catch (e: Exception) {
-                _state.value = State.FAILED
+                _state.value = State.ERROR
                 Log.e(TAG, "Error : ${e.message.toString()}")
             }
         }
@@ -83,21 +83,30 @@ class RawgViewModel : ViewModel() {
             try {
                 val response = RawgApi.retrofitService.getSearchedGames(query)
                 if (response.isSuccessful) {
-                    _listSearchedGames.value = response.body()?.results!!
-                    _searchState.value = State.SUCCESS
-                    Log.d(TAG, "Success : ${response.code()}")
+                    val listGame = response.body()?.results!!
+                    if (listGame.isNotEmpty()) {
+                        _listSearchedGames.value = listGame
+                        _searchState.value = State.SUCCESS
+                        Log.d(TAG, "Success : ${response.code()}")
+                    } else {
+                        _searchState.value = State.FAILED
+                        Log.d(TAG, "Failed : Data doesn't exists")
+                    }
                 } else {
-                    _searchState.value = State.FAILED
+                    _searchState.value = State.ERROR
                     Log.e(TAG, "Error : ${response.code()}")
                 }
             } catch (e: Exception) {
-                _searchState.value = State.FAILED
+                _searchState.value = State.ERROR
                 Log.e(TAG, "Error : ${e.message.toString()}")
             }
         }
     }
 
     fun isResetSearchGame(isReset: Boolean) {
-        if (isReset) _listSearchedGames.value = null
+        if (isReset) {
+            _listSearchedGames.value = null
+            _searchState.value = State.SUCCESS
+        }
     }
 }

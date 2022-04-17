@@ -43,7 +43,8 @@
                     app:boxCornerRadiusTopStart="@dimen/default_radius"
                     app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="@dimen/zero_dp"
-                    app:hintEnabled="false">
+                    app:hintEnabled="false"
+                    app:searchBarState="@{viewModel.state}">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/searchView"
