@@ -4,18 +4,19 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.rawggames.model.LatestGame
 import com.example.rawggames.model.SearchedGame
 import com.example.rawggames.model.State
 import com.example.rawggames.model.TopRating
 import com.example.rawggames.networking.RawgApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class RawgViewModel @Inject constructor(private val apiService: RawgApiService) : ViewModel() {
+class RawgViewModel @Inject constructor(private val rawgApiService: RawgApiService) : ViewModel() {
 
     companion object {
         private const val TAG = "RawgViewModel"
@@ -43,75 +44,66 @@ class RawgViewModel @Inject constructor(private val apiService: RawgApiService) 
     }
 
     private fun getTopRatingGame() {
-        viewModelScope.launch {
-            _state.value = State.LOADING
-            try {
-                val response = apiService.getListTopRating()
-                if (response.isSuccessful) {
-                    _listTopRating.postValue(response.body()?.results!!)
+        _state.value = State.LOADING
+        CompositeDisposable().add(
+            rawgApiService.getListTopRating()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ listTopRatingData ->
+                    _listTopRating.value = listTopRatingData.results!!
                     _state.value = State.SUCCESS
-                    Log.d(TAG, "Success : ${response.code()}")
-                } else {
+                    Log.d(TAG, "Success : ${listTopRatingData.results}")
+                }, { error ->
                     _state.value = State.ERROR
-                    Log.e(TAG, "Error : ${response.code()}")
-                }
-            } catch (e: Exception) {
-                _state.value = State.ERROR
-                Log.e(TAG, "Error : ${e.message.toString()}")
-            }
-        }
+                    Log.e(TAG, "Error : ${error.message.toString()}")
+                })
+        )
     }
 
     private fun getLatestGame() {
-        viewModelScope.launch {
-            _state.value = State.LOADING
-            try {
-                val response = apiService.getLatestGame()
-                if (response.isSuccessful) {
-                    _listLatestGame.postValue(response.body()?.results!!)
+        _state.value = State.LOADING
+        CompositeDisposable().add(
+            rawgApiService.getLatestGame()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ listLatestGameData ->
+                    _listLatestGame.value = listLatestGameData.results!!
                     _state.value = State.SUCCESS
-                    Log.d(TAG, "Success : ${response.code()}")
-                } else {
+                    Log.d(TAG, "Success : ${listLatestGameData.results}")
+                }, { error ->
                     _state.value = State.ERROR
-                    Log.e(TAG, "Error : ${response.code()}")
-                }
-            } catch (e: Exception) {
-                _state.value = State.ERROR
-                Log.e(TAG, "Error : ${e.message.toString()}")
-            }
-        }
+                    Log.e(TAG, "Error : ${error.message.toString()}")
+                })
+        )
     }
 
     fun getSearchedGames(query: String) {
-        viewModelScope.launch {
-            _searchState.value = State.LOADING
-            try {
-                val response = apiService.getSearchedGames(query)
-                if (response.isSuccessful) {
-                    val listGame = response.body()?.results!!
-                    if (listGame.isNotEmpty()) {
-                        _listSearchedGames.value = listGame
+        _searchState.value = State.LOADING
+        CompositeDisposable().add(
+            rawgApiService.getSearchedGames(query)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ listSearchedGameData ->
+                    val listSearchedGame = listSearchedGameData.results!!
+                    if (listSearchedGame.isNotEmpty()) {
+                        _listSearchedGames.value = listSearchedGame
                         _searchState.value = State.SUCCESS
-                        Log.d(TAG, "Success : ${response.code()}")
+                        Log.d(TAG, "Success : $listSearchedGame")
                     } else {
                         _searchState.value = State.FAILED
                         Log.d(TAG, "Failed : Data doesn't exists")
                     }
-                } else {
+                }, { error ->
                     _searchState.value = State.ERROR
-                    Log.e(TAG, "Error : ${response.code()}")
-                }
-            } catch (e: Exception) {
-                _searchState.value = State.ERROR
-                Log.e(TAG, "Error : ${e.message.toString()}")
-            }
-        }
+                    Log.e(TAG, "Error : ${error.message.toString()}")
+                })
+        )
     }
 
     fun isResetSearchGame(isReset: Boolean) {
         if (isReset) {
-            _listSearchedGames.value = null
             _searchState.value = State.SUCCESS
+            _listSearchedGames.value = null
         }
     }
 }

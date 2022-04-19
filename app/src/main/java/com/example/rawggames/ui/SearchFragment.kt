@@ -34,7 +34,7 @@ class SearchFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = rawgViewModel
             searchFragment = this@SearchFragment
-            edtSearch.requestFocus() // Set SearchView to auto focus
+            edtSearch.requestFocus() // Set search bar to auto focus
         }
 
         setSearchGameRecyclerView()
@@ -49,6 +49,14 @@ class SearchFragment : Fragment() {
         }
     }
 
+    fun getSearchedGames() {
+        hideKeyboard()
+        rawgViewModel.isResetSearchGame(true)
+        query = binding.edtSearch.text.toString().lowercase().trim()
+        if (query.isEmpty()) return
+        rawgViewModel.getSearchedGames(query)
+    }
+
     fun setActionSearchToKeyboard() {
         binding.edtSearch.setOnKeyListener { _, i, keyEvent ->
             if (keyEvent.action == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
@@ -57,14 +65,6 @@ class SearchFragment : Fragment() {
             }
             return@setOnKeyListener false
         }
-    }
-
-    fun getSearchedGames() {
-        hideKeyboard()
-        rawgViewModel.isResetSearchGame(true)
-        query = binding.edtSearch.text.toString().lowercase().trim()
-        if (query.isEmpty()) return
-        rawgViewModel.getSearchedGames(query)
     }
 
     private fun hideKeyboard() {

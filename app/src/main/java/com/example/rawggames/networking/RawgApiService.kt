@@ -3,7 +3,7 @@ package com.example.rawggames.networking
 import com.example.rawggames.model.LatestGameResponse
 import com.example.rawggames.model.SearchGameResponse
 import com.example.rawggames.model.TopRatingResponse
-import retrofit2.Response
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,11 +15,11 @@ interface RawgApiService {
     }
 
     @GET("games?key=${API_KEY}&page_size=10&ordering=-rating&platforms=4&page=1")
-    suspend fun getListTopRating(): Response<TopRatingResponse>
+    fun getListTopRating(): Observable<TopRatingResponse>
 
     @GET("games?key=${API_KEY}&page_size=10&ordering=-released&platforms=4&page=1&dates=2021-12-01,2021-12-31")
-    suspend fun getLatestGame(): Response<LatestGameResponse>
+    fun getLatestGame(): Observable<LatestGameResponse>
 
     @GET("games?key=${API_KEY}&page_size=10&platforms=4&page=1")
-    suspend fun getSearchedGames(@Query("search") query: String): Response<SearchGameResponse>
+    fun getSearchedGames(@Query("search") query: String): Observable<SearchGameResponse>
 }
