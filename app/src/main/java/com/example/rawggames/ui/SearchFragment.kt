@@ -17,10 +17,12 @@ import com.example.rawggames.databinding.FragmentSearchBinding
 import com.example.rawggames.viewmodel.RawgViewModel
 
 class SearchFragment : Fragment() {
+
     private lateinit var query: String
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
     private val rawgViewModel: RawgViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,

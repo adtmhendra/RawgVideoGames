@@ -9,12 +9,17 @@ import com.example.rawggames.model.LatestGame
 import com.example.rawggames.model.SearchedGame
 import com.example.rawggames.model.State
 import com.example.rawggames.model.TopRating
-import com.example.rawggames.networking.RawgApi
+import com.example.rawggames.networking.RawgApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-private const val TAG = "RawgViewModel"
+@HiltViewModel
+class RawgViewModel @Inject constructor(private val apiService: RawgApiService) : ViewModel() {
 
-class RawgViewModel : ViewModel() {
+    companion object {
+        private const val TAG = "RawgViewModel"
+    }
 
     private val _listTopRating = MutableLiveData<List<TopRating?>>()
     val listTopRating: LiveData<List<TopRating?>> get() = _listTopRating
@@ -41,7 +46,7 @@ class RawgViewModel : ViewModel() {
         viewModelScope.launch {
             _state.value = State.LOADING
             try {
-                val response = RawgApi.retrofitService.getListTopRating()
+                val response = apiService.getListTopRating()
                 if (response.isSuccessful) {
                     _listTopRating.postValue(response.body()?.results!!)
                     _state.value = State.SUCCESS
@@ -61,7 +66,7 @@ class RawgViewModel : ViewModel() {
         viewModelScope.launch {
             _state.value = State.LOADING
             try {
-                val response = RawgApi.retrofitService.getLatestGame()
+                val response = apiService.getLatestGame()
                 if (response.isSuccessful) {
                     _listLatestGame.postValue(response.body()?.results!!)
                     _state.value = State.SUCCESS
@@ -81,7 +86,7 @@ class RawgViewModel : ViewModel() {
         viewModelScope.launch {
             _searchState.value = State.LOADING
             try {
-                val response = RawgApi.retrofitService.getSearchedGames(query)
+                val response = apiService.getSearchedGames(query)
                 if (response.isSuccessful) {
                     val listGame = response.body()?.results!!
                     if (listGame.isNotEmpty()) {
