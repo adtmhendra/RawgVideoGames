@@ -1,7 +1,9 @@
 package com.example.rawggames.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +17,23 @@ import com.example.rawggames.R
 import com.example.rawggames.adapter.SearchGameAdapter
 import com.example.rawggames.databinding.FragmentSearchBinding
 import com.example.rawggames.viewmodel.RawgViewModel
+import com.jakewharton.rxbinding4.widget.textChanges
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class SearchFragment : Fragment() {
 
     private lateinit var query: String
+    private val disposable = CompositeDisposable()
+    private val rawgViewModel: RawgViewModel by activityViewModels()
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
-    private val rawgViewModel: RawgViewModel by activityViewModels()
+
+    companion object {
+        private val TAG = "SearchFragment"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,21 +47,36 @@ class SearchFragment : Fragment() {
             viewModel = rawgViewModel
             searchFragment = this@SearchFragment
             edtSearch.requestFocus() // Set search bar to auto focus
+            setSearchGameRecyclerView()
         }
-
-        setSearchGameRecyclerView()
-
         return binding.root
     }
 
-    private fun setSearchGameRecyclerView() {
-        binding.recyclerViewSearchedGames.apply {
-            setHasFixedSize(true)
-            adapter = SearchGameAdapter()
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        getSearchedGamesDataTextChanged()
     }
 
-    fun getSearchedGames() {
+    private fun getSearchedGamesDataTextChanged() {
+        disposable.add(
+            binding.edtSearch.textChanges()
+                .skipInitialValue()
+                .map { input -> input.toString() }
+                .debounce(500, TimeUnit.MILLISECONDS)
+                .distinctUntilChanged()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ input ->
+                    if (input.isEmpty()) rawgViewModel.isResetSearchGame(true)
+                    else rawgViewModel.getSearchedGames(input.toString())
+                    Log.d(TAG, input.toString())
+                }, { error ->
+                    Log.d(TAG, error.message.toString())
+                })
+        )
+    }
+
+    // Button search in search bar
+    fun getSearchedGamesData() {
         hideKeyboard()
         rawgViewModel.isResetSearchGame(true)
         query = binding.edtSearch.text.toString().lowercase().trim()
@@ -57,10 +84,19 @@ class SearchFragment : Fragment() {
         rawgViewModel.getSearchedGames(query)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setSearchGameRecyclerView() {
+        binding.recyclerViewSearchedGames.apply {
+            setHasFixedSize(true)
+            adapter = SearchGameAdapter()
+            adapter?.notifyDataSetChanged()
+        }
+    }
+
     fun setActionSearchToKeyboard() {
         binding.edtSearch.setOnKeyListener { _, i, keyEvent ->
             if (keyEvent.action == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
-                getSearchedGames()
+                getSearchedGamesData()
                 return@setOnKeyListener true
             }
             return@setOnKeyListener false
@@ -83,6 +119,7 @@ class SearchFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        disposable.clear()
         _binding = null
     }
 }

@@ -52,7 +52,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/imgBackToHome"
                 style="@style/ImageView.SearchBar"
                 android:layout_gravity="start|center_vertical"
@@ -61,12 +61,12 @@
                 android:src="@drawable/ic_back"
                 tools:ignore="RedundantDescriptionCheck" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/imgSearchGames"
                 style="@style/ImageView.SearchBar"
                 android:layout_gravity="end|center_vertical"
                 android:contentDescription="@string/button_search_game"
-                android:onClick="@{() -> searchFragment.getSearchedGames()}"
+                android:onClick="@{() -> searchFragment.getSearchedGamesData()}"
                 android:src="@drawable/ic_search"
                 tools:ignore="RedundantDescriptionCheck" />
 

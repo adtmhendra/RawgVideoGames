@@ -90,6 +90,7 @@ class RawgViewModel @Inject constructor(private val rawgApiService: RawgApiServi
                         _searchState.value = State.SUCCESS
                         Log.d(TAG, "Success : $listSearchedGame")
                     } else {
+                        _listSearchedGames.value = null
                         _searchState.value = State.FAILED
                         Log.d(TAG, "Failed : Data doesn't exists")
                     }

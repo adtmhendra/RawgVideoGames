@@ -15,5 +15,6 @@
         <item name="textAppearanceTitleMedium">@style/TextAppearance.RawgGames.TitleMedium</item>
         <item name="textAppearanceBodyLarge">@style/TextAppearance.RawgGames.BodyLarge</item>
         <item name="textAppearanceBodySmall">@style/TextAppearance.RawgGames.BodySmall</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
 </resources>
