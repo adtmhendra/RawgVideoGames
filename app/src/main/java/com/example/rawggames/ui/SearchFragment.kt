@@ -1,7 +1,6 @@
 package com.example.rawggames.ui
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -9,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -18,12 +18,18 @@ import com.example.rawggames.adapter.SearchGameAdapter
 import com.example.rawggames.databinding.FragmentSearchBinding
 import com.example.rawggames.viewmodel.RawgViewModel
 import com.jakewharton.rxbinding4.widget.textChanges
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
+
+    @Inject
+    lateinit var inputMethodManager: InputMethodManager
 
     private lateinit var query: String
     private val disposable = CompositeDisposable()
@@ -32,7 +38,7 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     companion object {
-        private val TAG = "SearchFragment"
+        private const val TAG = "SearchFragment"
     }
 
     override fun onCreateView(
@@ -46,8 +52,9 @@ class SearchFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = rawgViewModel
             searchFragment = this@SearchFragment
-            edtSearch.requestFocus() // Set search bar to auto focus
+
             setSearchGameRecyclerView()
+            edtSearch.showKeyboard()
         }
         return binding.root
     }
@@ -75,7 +82,6 @@ class SearchFragment : Fragment() {
         )
     }
 
-    // Button search in search bar
     fun getSearchedGamesData() {
         hideKeyboard()
         rawgViewModel.isResetSearchGame(true)
@@ -84,16 +90,15 @@ class SearchFragment : Fragment() {
         rawgViewModel.getSearchedGames(query)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun setSearchGameRecyclerView() {
-        binding.recyclerViewSearchedGames.apply {
-            setHasFixedSize(true)
-            adapter = SearchGameAdapter()
-            adapter?.notifyDataSetChanged()
+    private fun EditText.showKeyboard() {
+        post {
+            requestFocus()
+            inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+            setActionSearchToKeyboard()
         }
     }
 
-    fun setActionSearchToKeyboard() {
+    private fun setActionSearchToKeyboard() {
         binding.edtSearch.setOnKeyListener { _, i, keyEvent ->
             if (keyEvent.action == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER) {
                 getSearchedGamesData()
@@ -105,10 +110,15 @@ class SearchFragment : Fragment() {
 
     private fun hideKeyboard() {
         val view = activity?.currentFocus
-        if (view != null) {
-            val inputMethodManager =
-                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        if (view != null) inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setSearchGameRecyclerView() {
+        binding.recyclerViewSearchedGames.apply {
+            setHasFixedSize(true)
+            adapter = SearchGameAdapter()
+            adapter?.notifyDataSetChanged()
         }
     }
 

@@ -45,7 +45,6 @@
                     android:id="@+id/edtSearch"
                     style="@style/SearchBarContainer.SearchView"
                     android:imeOptions="actionSearch"
-                    android:onClick="@{() -> searchFragment.setActionSearchToKeyboard()}"
                     android:paddingStart="@dimen/default_search_hint_padding"
                     android:paddingEnd="@dimen/default_search_hint_padding"
                     android:textColorHint="@color/soft_blue" />
