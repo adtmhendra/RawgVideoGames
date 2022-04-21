@@ -12,18 +12,16 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/homeSearch"
-            app:enterAnim="@anim/slide_in_right" />
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeSearch"
+        android:id="@+id/searchFragment"
         android:name="com.example.rawggames.ui.SearchFragment"
         android:label="@string/search"
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_homeSearch_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:enterAnim="@anim/slide_in_left"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
     </fragment>
