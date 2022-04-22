@@ -1,4 +1,4 @@
-package com.example.rawggames.ui
+package com.example.rawggames.view
 
 import android.annotation.SuppressLint
 import android.content.Intent

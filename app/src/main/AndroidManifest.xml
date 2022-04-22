@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RawgGames">
         <activity
-            android:name=".ui.SplashscreenActivity"
+            android:name=".view.SplashscreenActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
         </activity>
     </application>

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.SearchFragment">
+    tools:context=".view.SearchFragment">
 
     <data>
         <variable
@@ -11,7 +11,7 @@
 
         <variable
             name="searchFragment"
-            type="com.example.rawggames.ui.SearchFragment" />
+            type="com.example.rawggames.view.SearchFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

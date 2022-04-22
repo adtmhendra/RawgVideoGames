@@ -1,4 +1,4 @@
-package com.example.rawggames.ui
+package com.example.rawggames.view
 
 import android.os.Bundle
 import android.view.LayoutInflater

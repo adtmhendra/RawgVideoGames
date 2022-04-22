@@ -14,12 +14,12 @@ interface RawgApiService {
         const val BASE_URL = "https://api.rawg.io/api/"
     }
 
-    @GET("games?key=${API_KEY}&page_size=10&ordering=-rating&platforms=4&page=1")
+    @GET("games?key=$API_KEY&page_size=10&ordering=-rating&platforms=4&page=1")
     fun getListTopRating(): Observable<TopRatingResponse>
 
-    @GET("games?key=${API_KEY}&page_size=10&ordering=-released&platforms=4&page=1&dates=2021-12-01,2021-12-31")
+    @GET("games?key=$API_KEY&page_size=10&ordering=-released&platforms=4&page=1&dates=2021-12-01,2021-12-31")
     fun getLatestGame(): Observable<LatestGameResponse>
 
-    @GET("games?key=${API_KEY}&page_size=10&platforms=4&page=1")
+    @GET("games?key=$API_KEY&page_size=10&platforms=4&page=1")
     fun getSearchedGames(@Query("search") query: String): Observable<SearchGameResponse>
 }
