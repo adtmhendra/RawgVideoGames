@@ -1,6 +1,7 @@
 package com.example.rawggames.di
 
-import com.example.rawggames.networking.RawgApiService
+import com.example.rawggames.data.constant.RestConstant
+import com.example.rawggames.data.source.RawgApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -26,7 +27,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(moshi: Moshi): Retrofit =
         Retrofit.Builder().apply {
-            baseUrl(RawgApiService.BASE_URL)
+            baseUrl(RestConstant.RawgApi.BASE_URL)
             addConverterFactory(MoshiConverterFactory.create(moshi))
             addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         }.build()

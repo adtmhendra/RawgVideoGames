@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="topRating"
-            type="com.example.rawggames.model.TopRating" />
+            type="com.example.rawggames.data.response.toprating.TopRating" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

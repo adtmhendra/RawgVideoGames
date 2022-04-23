@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="searchedGame"
-            type="com.example.rawggames.model.SearchedGame" />
+            type="com.example.rawggames.data.response.searchgame.SearchGame" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

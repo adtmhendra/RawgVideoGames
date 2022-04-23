@@ -2,16 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.SearchFragment">
+    tools:context=".presentation.view.fragment.SearchFragment">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.example.rawggames.viewmodel.RawgViewModel" />
+            type="com.example.rawggames.presentation.viewmodel.RawgViewModel" />
 
         <variable
             name="searchFragment"
-            type="com.example.rawggames.view.SearchFragment" />
+            type="com.example.rawggames.presentation.view.fragment.SearchFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
