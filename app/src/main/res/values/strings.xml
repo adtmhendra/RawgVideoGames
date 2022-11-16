@@ -5,7 +5,7 @@
     <string name="latest_game">Latest Game</string>
     <string name="latest_game_image">Latest game image</string>
     <string name="top_rating_image">Top rating image</string>
-    <string name="splashscreen_image">Splashscreens image</string>
+    <string name="splashscreen_image">Splashscreen image</string>
     <string name="searched_game_image">Searched game image</string>
     <string name="no_internet_connection_error_image">No internet connection error image</string>
     <string name="search_games">Search games..</string>
@@ -15,4 +15,7 @@
     <string name="data_is_empty_image">Data is empty image</string>
     <string name="data_is_empty_test">Data is empty check</string>
     <string name="data_test">testtt</string>
+    <string name="data_test2">testtt2</string>
+    <string name="data_test3">testtt3</string>
+    <string name="data_test4">testtt3</string>
 </resources>
